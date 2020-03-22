@@ -24,11 +24,16 @@ const getMaterias = async (req, res, next) => {
         INNER JOIN Materia ON materia.clave = c.clave_materia 
         INNER JOIN creditos ON materia.clave = creditos.clave_materia where c.ncontrol= '${ncontrol}'`)
         
+        //get Porcentaje de Avance de Creditos
+        let queryPorcentajeAvance = await pool.query(`select sum(creditos.credito) * 100 / 260 as porcentaje FROM (select * from control where calificacion != 'NA') as c 
+        INNER JOIN Materia ON materia.clave = c.clave_materia 
+        INNER JOIN creditos ON materia.clave = creditos.clave_materia where c.ncontrol= '${ncontrol}'`)
         //get Response to clients
         res.json({
             nControl: ncontrol,
             promedioGeneral: queryPromGeneral.rows[0].promgen,
             creditosAcumulados: queryCreditos.rows[0].sum, 
+            porcentajeAvance: queryPorcentajeAvance.rows[0].porcentaje,
             materiasInfo :queryMaterias.rows})
 
 
