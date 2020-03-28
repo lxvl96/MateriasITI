@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>MateriasAPI</title>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body style="background: url('/imgs/imagen2.jpg') no-repeat   center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;">
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/"><b>MateriasAPI</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav ml-auto">
+        <% if (!user) { %>
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/">Acceder</a>
+        </li> -->
+        <% } else { %>
+       <!--  <li class="nav-item active">
+          <a class="nav-link" href="/dashboard"> <i class="fa fa-table"></i> Dashboard</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"> <i class="fa fa-lock"></i> Cerrar Sesion</a>
+        </li>
+        <% } %>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!--  <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small><script>new Date()</script></small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div> -->
+
+  <!-- <%if (signinMsg) {%>
+  <div class="alert alert-dismissible alert-danger p-4 mr-auto">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Ooops! <%= signinMsg %> . </strong>
+  </div>
+  <% } %> -->
+
+  <div class="container p-4 mr-auto">
+    <%if (signinMsg.length > 0) {%>
+    <div class="alert alert-dismissible alert-danger p-4 mr-auto">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Ooops! <%= signinMsg %> . </strong>
+    </div>
+    <% } %>
+
+    <%if (signupMsg.length > 0) {%>
+    <div class="alert alert-dismissible alert-danger p-4 mr-auto">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Ooops! <%= signupMsg %> . </strong>
+    </div>
+    <% } %>
+
+
+    <%- body %>
+  </div>
+</body>
+
+</html>

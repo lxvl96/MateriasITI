@@ -23,18 +23,20 @@ const getMaterias = async (req, res, next) => {
         let queryCreditos = await pool.query(`select sum(creditos.credito) FROM (select * from control where calificacion != 'NA') as c 
         INNER JOIN Materia ON materia.clave = c.clave_materia 
         INNER JOIN creditos ON materia.clave = creditos.clave_materia where c.ncontrol= '${ncontrol}'`)
-        
+
         //get Porcentaje de Avance de Creditos
         let queryPorcentajeAvance = await pool.query(`select sum(creditos.credito) * 100 / 260 as porcentaje FROM (select * from control where calificacion != 'NA') as c 
         INNER JOIN Materia ON materia.clave = c.clave_materia 
         INNER JOIN creditos ON materia.clave = creditos.clave_materia where c.ncontrol= '${ncontrol}'`)
+
         //get Response to clients
         res.json({
             nControl: ncontrol,
             promedioGeneral: queryPromGeneral.rows[0].promgen,
-            creditosAcumulados: queryCreditos.rows[0].sum, 
+            creditosAcumulados: queryCreditos.rows[0].sum,
             porcentajeAvance: queryPorcentajeAvance.rows[0].porcentaje,
-            materiasInfo :queryMaterias.rows})
+            materiasInfo: queryMaterias.rows
+        })
 
 
         //res.json({ nControl: ncontrol, porcentajeAvance: porcentaje.rows[0].porcentaje + '%', promedioGeneral: parseInt(promedio.rows[0].avg).toString(), creditosAcumulados: creditos.rows[0].sum, materiasInfo: materias.rows })
@@ -43,23 +45,7 @@ const getMaterias = async (req, res, next) => {
     }
 }
 
-module.exports = { 
+//exports
+module.exports = {
     getMaterias
- }
-
-
-
- ///Consultas probar
-
- /**const materias = await pool.query(`select materia.nombre as materia, c.clave_materia,
-        creditos.credito ,
-        c.calificacion, 
-        evaluacion.nombre_corto as oportunidad,periodos.periodo
-        FROM (SELECT unnest(string_to_array(right(periodo_cursado, length(periodo_cursado)-4) ,NULL)) as tipo ,periodo_cursado, clave_materia , ncontrol ,oportunidad, calificacion FROM control) as c
-        INNER JOIN Materia ON materia.clave = c.clave_materia 
-        INNER JOIN creditos ON materia.clave = creditos.clave_materia 
-        INNER JOIN periodos ON c.tipo = periodos.tipo
-        INNER JOIN evaluacion on c.oportunidad = evaluacion.clave and c.ncontrol= '${ncontrol}'`) */
-        //const promedio = await pool.query(`select avg(control.calificacion) FROM Control INNER JOIN Materia ON materia.clave = control.clave_materia INNER JOIN creditos ON materia.clave = creditos.clave_materia where control.ncontrol= '${ncontrol}';`)
-        //const creditos = await pool.query(`select sum(creditos.credito) FROM Control INNER JOIN Materia ON materia.clave = control.clave_materia INNER JOIN creditos ON materia.clave = creditos.clave_materia where control.ncontrol= '${ncontrol}';`)
-        //const porcentaje = await pool.query(`select sum(creditos.credito) * 100 / 260 as porcentaje FROM Control INNER JOIN Materia ON materia.clave = control.clave_materia INNER JOIN creditos ON materia.clave = creditos.clave_materia where control.ncontrol= '${ncontrol}';`)
+}

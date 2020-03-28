@@ -1,4 +1,6 @@
 const { Router } = require('express')
+const passport = require('passport')
+
 const { verifyMateria, verifyCreditos, verifyControl, verifyEvaluacion } = require('../Middlewares/VerifyFiles')
 const { truncateMaterias, truncateCreditos, truncateControl, truncateEvaluacion } = require('../Controllers/Truncates.controllers')
 const { addMaterias, addCreditos, addControl, addEvaluacion } = require('../Controllers/Adds.Controllers')
@@ -15,16 +17,58 @@ r.route('/materias')
 r.route('/creditos')
     .post(verifyCreditos, truncateCreditos, addCreditos)
 
-r.route('/control')
+r.route('/controles')
     .post(verifyControl/* , truncateControl */, addControl)
 
-r.route('/evaluacion')
+r.route('/evaluaciones')
     .post(verifyEvaluacion, truncateEvaluacion, addEvaluacion)
 
-// r.route('/login')
-//     .post(authLogin)
+r.get('/', (req, res, next) => {
 
-// r.route('/home')
-//     .post(home)
+    if (req.isAuthenticated()) {
+        res.redirect('/dashboards')
+    }
+
+    //res.redirect('/')
+    res.render('login')
+})
+
+r.post('/login', passport.authenticate('local-signin', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/',
+    failureFlash: true
+}));
+
+r.get('/dashboard', isAuthenticated, (req, res, next) => {
+    res.render('dashboard');
+});
+
+
+r.get('/register', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        res.redirect('/dashboard')
+    }
+
+    res.render('register');
+});
+
+r.post('/register', passport.authenticate('local-signup', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/register',
+    failureFlash: true
+}));
+
+r.get('/logout', (req, res, next) => {
+    req.logout();
+    res.redirect('/');
+});
+
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/')
+}
 
 module.exports = r

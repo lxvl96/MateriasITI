@@ -49,13 +49,13 @@ const verifyControl = async (req, res, next) => {
             message: "No Se Subio Ningun Archivo"
         });
     }
-    if (!req.files.csvControl) {
+    if (!req.files.csvcontrol) {
         return res.status(400).json({
             status: "false",
             message: "No Se Subio CSV de Control"
         });
     }
-    if (req.files.csvControl.mimetype != "text/csv") {
+    if (req.files.csvcontrol.mimetype != "text/csv") {
         return res.status(400).json({
             status: "false",
             message: "Formato No Soportado , Solo Formatos CSV"
