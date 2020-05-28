@@ -18,57 +18,57 @@ r.route('/creditos')
     .post(verifyCreditos, truncateCreditos, addCreditos)
 
 r.route('/controles')
-    .post(verifyControl/* , truncateControl */, addControl)
+    .post(/* verifyControl *//* , truncateControl */ addControl)
 
 r.route('/evaluaciones')
     .post(verifyEvaluacion, truncateEvaluacion, addEvaluacion)
 
-r.get('/', (req, res, next) => {
+// r.get('/', (req, res, next) => {
 
-    if (req.isAuthenticated()) {
-        res.redirect('/dashboards')
-    }
+//     if (req.isAuthenticated()) {
+//         res.redirect('/dashboards')
+//     }
 
-    //res.redirect('/')
-    res.render('login')
-})
+//     //res.redirect('/')
+//     res.render('login')
+// })
 
-r.post('/login', passport.authenticate('local-signin', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/',
-    failureFlash: true
-}));
+// r.post('/login', passport.authenticate('local-signin', {
+//     successRedirect: '/dashboard',
+//     failureRedirect: '/',
+//     failureFlash: true
+// }));
 
-r.get('/dashboard', isAuthenticated, (req, res, next) => {
-    res.render('dashboard');
-});
+// r.get('/dashboard', isAuthenticated, (req, res, next) => {
+//     res.render('dashboard');
+// });
 
 
-r.get('/register', (req, res, next) => {
-    if (req.isAuthenticated()) {
-        res.redirect('/dashboard')
-    }
+// r.get('/register', (req, res, next) => {
+//     if (req.isAuthenticated()) {
+//         res.redirect('/dashboard')
+//     }
 
-    res.render('register');
-});
+//     res.render('register');
+// });
 
-r.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/register',
-    failureFlash: true
-}));
+// r.post('/register', passport.authenticate('local-signup', {
+//     successRedirect: '/dashboard',
+//     failureRedirect: '/register',
+//     failureFlash: true
+// }));
 
-r.get('/logout', (req, res, next) => {
-    req.logout();
-    res.redirect('/');
-});
+// r.get('/logout', (req, res, next) => {
+//     req.logout();
+//     res.redirect('/');
+// });
 
-function isAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
+// function isAuthenticated(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
 
-    res.redirect('/')
-}
+//     res.redirect('/')
+// }
 
 module.exports = r

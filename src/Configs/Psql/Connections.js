@@ -3,7 +3,7 @@ const { Pool } = require('pg')
 //Connection PSQL
 var credentials = {
     username: "postgres",
-    password: "amordios96",
+    password: "adiosamor96",
     server: "localhost",
     database: "materiasdb"
 }

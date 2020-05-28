@@ -2,7 +2,7 @@ const { pool } = require('../Configs/Psql/Connections')
 
 //Methods Query Get Materias de PSQL
 const getMaterias = async (req, res, next) => {
-    try {
+     try {
         //getMaterias
         let ncontrol = req.params.ncontrol;
         const queryMaterias = await pool.query(`select materia.nombre as materia,
@@ -40,9 +40,9 @@ const getMaterias = async (req, res, next) => {
 
 
         //res.json({ nControl: ncontrol, porcentajeAvance: porcentaje.rows[0].porcentaje + '%', promedioGeneral: parseInt(promedio.rows[0].avg).toString(), creditosAcumulados: creditos.rows[0].sum, materiasInfo: materias.rows })
-    } catch (error) {
-        res.json({ msg: 'Error Database Connection' })
-    }
+     } catch (error) {
+         res.json({ msg: 'Error Database Connection' })
+     }
 }
 
 //exports

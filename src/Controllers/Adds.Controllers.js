@@ -104,7 +104,7 @@ const addCreditos = (req, res, next) => {
 }
 
 const addControl = (req, res, next) => {
-    let csvCont = req.files.csvcontrol;
+    let csvCont = req.files.csvControl;
     let contrPath = `${__dirname}/../Public/` + csvCont.name;
     csvCont.mv(contrPath)
     let stream = fs.createReadStream(contrPath);

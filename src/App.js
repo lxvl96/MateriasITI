@@ -31,14 +31,14 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use((req, res, next) => {
-    app.locals.signinMsg = req.flash('signinMsg')
-    app.locals.signupMsg = req.flash('signupMsg')
-    app.locals.user = req.user
-    console.log(app.locals);
-    next()
+// app.use((req, res, next) => {
+//     app.locals.signinMsg = req.flash('signinMsg')
+//     app.locals.signupMsg = req.flash('signupMsg')
+//     app.locals.user = req.user
+//     console.log(app.locals);
+//     next()
     
-})
+// })
 
 //Routes
 app.use(require('./Routes/Index.Routes'))
