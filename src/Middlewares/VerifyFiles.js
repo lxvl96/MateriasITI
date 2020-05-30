@@ -1,87 +1,63 @@
 const verifyMateria = async (req, res, next) => {
     if (!req.files) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio Ningun Archivo"
-        });
+        req.flash('noSuccess', 'No Se Ha Seleccionado CSV');
+        res.redirect('/dashboard')
     }
     if (!req.files.csvMaterias) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio CSV de Materias"
-        });
+        req.flash('noSuccess', 'No Se Ha Subido Satisfactoriamente');
+        res.redirect('/dashboard')
     }
     if (req.files.csvMaterias.mimetype != "text/csv") {
-        return res.status(400).json({
-            status: "false",
-            message: "Formato No Soportado , Solo Formatos CSV"
-        });
+        req.flash('noSuccess', 'Formato No Soportado , Solo Formatos CSV');
+        res.redirect('/dashboard')
     }
     next()
 }
 
 const verifyCreditos = async (req, res, next) => {
     if (!req.files) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio Ningun Archivo"
-        });
+        req.flash('noSuccess', 'No Se Ha Seleccionado CSV');
+        res.redirect('/dashboard')
     }
     if (!req.files.csvCreditos) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio CSV de Creditos"
-        });
+        req.flash('noSuccess', 'No Se Ha Subido Satisfactoriamente');
+        res.redirect('/dashboard')
     }
     if (req.files.csvCreditos.mimetype != "text/csv") {
-        return res.status(400).json({
-            status: "false",
-            message: "Formato No Soportado , Solo Formatos CSV"
-        });
+        req.flash('noSuccess', 'Formato No Soportado , Solo Formatos CSV');
+        res.redirect('/dashboard')
     }
     next()
 }
 
 const verifyControl = async (req, res, next) => {
     if (!req.files) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio Ningun Archivo"
-        });
+        req.flash('noSuccess', 'No Se Ha Seleccionado CSV');
+        res.redirect('/dashboard')
     }
     if (!req.files.csvControl) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio CSV de Control"
-        });
+        req.flash('noSuccess', 'No Se Ha Subido Satisfactoriamente');
+        res.redirect('/dashboard')
     }
     if (req.files.csvControl.mimetype != "text/csv") {
-        return res.status(400).json({
-            status: "false",
-            message: "Formato No Soportado , Solo Formatos CSV"
-        });
+        req.flash('noSuccess', 'Formato No Soportado , Solo Formatos CSV');
+        res.redirect('/dashboard')
     }
     next()
 }
 
 const verifyEvaluacion = async (req, res, next) => {
     if (!req.files) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio Ningun Archivo"
-        });
+        req.flash('noSuccess', 'No Se Ha Seleccionado CSV');
+        res.redirect('/dashboard')
     }
     if (!req.files.csvEvaluacion) {
-        return res.status(400).json({
-            status: "false",
-            message: "No Se Subio CSV de Evaluacion"
-        });
+        req.flash('noSuccess', 'No Se Ha Subido Satisfactoriamente');
+        res.redirect('/dashboard')
     }
     if (req.files.csvEvaluacion.mimetype != "text/csv") {
-        return res.status(400).json({
-            status: "false",
-            message: "Formato No Soportado , Solo Formatos CSV"
-        });
+        req.flash('noSuccess', 'Formato No Soportado , Solo Formatos CSV');
+        res.redirect('/dashboard')
     }
     next()
 }

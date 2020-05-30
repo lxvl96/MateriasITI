@@ -32,9 +32,10 @@ background-size: cover;">
           <a class="nav-link" href="/">Acceder</a>
         </li> -->
         <% } else { %>
-       <!--  <li class="nav-item active">
-          <a class="nav-link" href="/dashboard"> <i class="fa fa-table"></i> Dashboard</a>
-        </li> -->
+        <li class="nav-item active">
+          <!-- <a class="nav-link" href="/dashboard"> <i class="fa fa-table"></i> Dashboard</a> -->
+          <strong>Bienvenido! <%= user.username %> . </strong>
+        </li>
         <li class="nav-item active">
           <a class="nav-link" href="/logout"> <i class="fa fa-lock"></i> Cerrar Sesion</a>
         </li>
@@ -69,20 +70,25 @@ background-size: cover;">
     <%if (signinMsg.length > 0) {%>
     <div class="alert alert-dismissible alert-danger p-4 mr-auto">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Ooops! <%= signinMsg %> . </strong>
+      <strong>Oppss! <%= signinMsg %> . </strong>
     </div>
     <% } %>
 
     <%if (signupMsg.length > 0) {%>
     <div class="alert alert-dismissible alert-danger p-4 mr-auto">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Ooops! <%= signupMsg %> . </strong>
+      <strong>Oppss! <%= signupMsg %> . </strong>
     </div>
     <% } %>
 
 
     <%- body %>
   </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/custom.js"></script>
 </body>
 
 </html>

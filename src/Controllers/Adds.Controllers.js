@@ -32,7 +32,9 @@ const addMaterias = (req, res, next) => {
             console.log(err);
         });
     stream.pipe(csvStream)
-    res.json({ msg: 'Successfully Registered Subjects!' })
+    // res.json({ msg: 'Successfully Registered Subjects!' })
+    req.flash('createSuccess', 'Subido Satisfactoriamente');
+    res.redirect('/dashboard')
 }
 
 const addEvaluacion = (req, res, next) => {
@@ -67,7 +69,9 @@ const addEvaluacion = (req, res, next) => {
         });
     stream.pipe(csvStream)
     // next()
-    res.json({ msg: 'Successfully Registered Evaluacion!' })
+    req.flash('createSuccess', 'Subido Satisfactoriamente');
+    res.redirect('/dashboard')
+    // res.json({ msg: 'Successfully Registered Evaluacion!' })
 }
 
 const addCreditos = (req, res, next) => {
@@ -100,7 +104,9 @@ const addCreditos = (req, res, next) => {
         });
     stream.pipe(csvStream)
     // next()
-    res.json({ msg: 'Successfully Registered Credits!' })
+    req.flash('createSuccess', 'Subido Satisfactoriamente');
+    res.redirect('/dashboard')
+    //res.json({ msg: 'Successfully Registered Credits!' })
 }
 
 const addControl = (req, res, next) => {
@@ -136,7 +142,9 @@ const addControl = (req, res, next) => {
         });
     stream.pipe(csvStream)
     // next()
-    res.json({ msg: 'Successfully Registered Control!' })
+    req.flash('createSuccess', 'Subido Satisfactoriamente');
+    res.redirect('/dashboard')
+    // res.json({ msg: 'Successfully Registered Control!' })
 }
 
 module.exports = {

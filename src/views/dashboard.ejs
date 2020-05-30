@@ -1,105 +1,142 @@
 <%- layout('layouts/main') %>
 
-<div class="alert alert-dismissible alert-danger p-4 mr-auto">
+<!-- <div class="alert alert-dismissible alert-danger p-4 mr-auto">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>Bienvenido! <%= user.username %> . </strong>
+</div> -->
+
+<div class="container">
+    <%if (createSuccess.length > 0) {%>
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong><%= createSuccess %> !. </strong>
+    </div>
+    <% } %>
+    <%if (noSuccess.length > 0) {%>
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong><%= noSuccess %> !. </strong>
+    </div>
+    <% } %>
+    <div class="rows">
+        <div class=" row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center align-self-center">
+
+            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+                <form action="/controles" method="POST" enctype="multipart/form-data">
+                    <div class="card-header bg-dark">
+                        <center>CONTROL</center>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="csvControl" name="csvControl">
+                                <label class="custom-file-label" for="csvControl">Seleccionar CSV</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <button class="btn btn-block btn-primary">Subir</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+                <form action="/materias" method="POST" enctype="multipart/form-data">
+                    <div class="card-header bg-dark">
+                        <center>MATERIAS</center>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="csvMaterias" name="csvMaterias">
+                                <label class="custom-file-label" for="csvMaterias">Seleccionar CSV</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <button class="btn btn-block btn-primary">Subir</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+                <form action="/evaluaciones" method="POST" enctype="multipart/form-data">
+                    <div class="card-header bg-dark">
+                        <center>EVALUACIONES (TIPOS)</center>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="csvEvaluacion" name="csvEvaluacion">
+                                <label class="custom-file-label" for="csvEvaluacion">Seleccionar CSV</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <button class="btn btn-block btn-primary">Subir</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+                <form action="/creditos" method="POST" enctype="multipart/form-data">
+                    <div class="card-header bg-dark">
+                        <center>CREDITOS (MATERIAS)</center>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="csvCreditos" name="csvCreditos">
+                                <label class="custom-file-label" for="csvCreditos">Seleccionar CSV</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <button class="btn btn-block btn-primary">Subir</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
 </div>
+<!-- 
+<div class="rows p-4">
+    <div class=" row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center align-self-center">
 
-<!-- control -->
-<div class="row">
-    <div class="card text-white bg-primary mb-3 mx-auto" style="max-width: 20rem;">
-        <form action="/controles" method="POST">
-            <div class="card-header bg-dark">
-                <center>CONTROL</center>
-            </div>
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="csvControl" name="csvControl">
-                        <label class="custom-file-label" for="csvcontrol">Seleccionar CSV</label>
+        <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+            <form action="/controles" method="POST" enctype="multipart/form-data">
+                <div class="card-header bg-dark">
+                    <center>CONTROL</center>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="csvControl" name="csvControl">
+                            <label class="custom-file-label" for="csvControl">Seleccionar CSV</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer bg-dark">
-                <button class="btn btn-block btn-primary">Subir</button>
-            </div>
-        </form>
-    </div>
-
-
-    <!-- materias -->
-
-    <div class="card text-white bg-primary mb-3 mx-auto" style="max-width: 20rem;">
-        <form action="/materias" method="POST">
-            <div class="card-header bg-dark">
-                <center>MATERIAS</center>
-            </div>
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="materias" name="materias">
-                        <label class="custom-file-label" for="materias">Seleccionar CSV</label>
-                    </div>
+                <div class="card-footer bg-dark">
+                    <button class="btn btn-block btn-primary">Subir</button>
                 </div>
-            </div>
-            <div class="card-footer bg-dark">
-                <button class="btn btn-block btn-primary">Subir</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- evaluacion -->
-
-    <div class="card text-white bg-primary mb-3 mx-auto" style="max-width: 20rem;">
-        <form action="/evaluacion" method="POST">
-            <div class="card-header bg-dark">
-                <center>EVALUACTIONES (TIPOS)</center>
-            </div>
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="evaluacion" name="evaluacion">
-                        <label class="custom-file-label" for="evaluacion">Seleccionar CSV</label>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bg-dark">
-                <button class="btn btn-block btn-primary">Subir</button>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="row">
-    <!-- evaluacion -->
-
-    <div class="card text-white bg-primary mb-3 mx-auto" style="max-width: 20rem;">
-        <form action="/creditos" method="POST">
-            <div class="card-header bg-dark">
-                <center>CREDITOS (MATERIAS)</center>
-            </div>
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="control">
-                        <label class="custom-file-label" for="control">Seleccionar CSV</label>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bg-dark">
-                <button class="btn btn-block btn-primary">Subir</button>
-            </div>
-        </form>
-    </div>
-</div>
+            </form>
+        </div>
+    </div> -->
