@@ -51,11 +51,10 @@ const addEvaluacion = (req, res, next) => {
             }
             let plan_estudio = record[0];
             let clave = record[1];
-            let nombre = record[2];
-            let nombre_corto = record[3];
-            let calificacion_aprobmini = record[4];
-            pool.query("INSERT INTO evaluacion (plan_estudio, clave,nombre,nombre_corto,calificacion_aprobmini) \
-            VALUES($1,$2,$3,$4,$5)", [plan_estudio, clave, nombre, nombre_corto, calificacion_aprobmini], function (err) {
+            let nombre_corto = record[2];
+            let calificacion_aprobmini = record[3];
+            pool.query("INSERT INTO evaluacion (plan_estudio, clave,nombre_corto,calificacion_aprobmini) \
+            VALUES($1,$2,$3,$4)", [plan_estudio, clave, nombre_corto, calificacion_aprobmini], function (err) {
                 if (err) {
                     console.log(err);
                 }
@@ -123,12 +122,12 @@ const addControl = (req, res, next) => {
             }
             let ncontrol = record[0];
             let clave_materia = record[1];
-            let periodAcred = record[2];
-            let periodCursad = record[3];
+            let periodCursad = record[2];
+            let periodAcred = record[3];
             let calificacion = record[4];
             let oportunidad = record[5];
-            pool.query("INSERT INTO control (ncontrol , clave_materia , periodo_acreditado , periodo_cursado, calificacion ,oportunidad) \
-            VALUES($1,$2,$3,$4,$5,$6)", [ncontrol, clave_materia, periodAcred, periodCursad, calificacion, oportunidad], function (err) {
+            pool.query("INSERT INTO control (ncontrol , clave_materia , periodo_cursado, periodo_acreditado , calificacion ,oportunidad) \
+            VALUES($1,$2,$3,$4,$5,$6)", [ncontrol, clave_materia, periodCursad, periodAcred, calificacion, oportunidad], function (err) {
                 if (err) {
                     console.log(err);
                 }
