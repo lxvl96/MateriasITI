@@ -8,7 +8,7 @@ const { getMaterias } = require('../Controllers/Gets.Controllers')
 const { genKeys, verifyKey } = require('../Middlewares/APIKeys')
 const r = Router()
 
-r.route('/materias/:ncontrol')
+r.route('/materias/:ncontrol/:apikey')
     .get(getMaterias)
 
 r.route('/materias')

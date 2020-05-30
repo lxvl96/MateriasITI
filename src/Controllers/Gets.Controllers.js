@@ -7,8 +7,8 @@ const getMaterias = async (req, res, next) => {
         let keyInput = req.params.apikey;
         console.log(keyInput);
         
-        // const keyBD = await keys.findById(keyInput)
-        // if (keyInput = keyBD) {
+        const keyBD = await keys.findById(keyInput)
+        if (keyInput = keyBD) {
             //getMaterias
             let ncontrol = req.params.ncontrol;
             const queryMaterias = await pool.query(`select materia.nombre as materia,
@@ -44,9 +44,9 @@ const getMaterias = async (req, res, next) => {
                 materiasInfo: queryMaterias.rows
             })
 
-        // } else {
-        //     res.json({ msg: 'Error , No Tienes Accesso a La API' })
-        // }
+        } else {
+            res.json({ msg: 'Error , No Tienes Accesso a La API' })
+        }
         //res.json({ nControl: ncontrol, porcentajeAvance: porcentaje.rows[0].porcentaje + '%', promedioGeneral: parseInt(promedio.rows[0].avg).toString(), creditosAcumulados: creditos.rows[0].sum, materiasInfo: materias.rows })
     } catch (error) {
         res.json({ msg: 'Error Database Connection' })
