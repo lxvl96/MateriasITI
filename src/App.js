@@ -5,6 +5,8 @@ const passport = require('passport')
 const flash = require('connect-flash')
 const engine = require('ejs-mate')
 const path = require('path')
+const https = require('https')
+const fs = require('fs')
 
 //inits
 const app = express()
@@ -12,7 +14,7 @@ require('./Configs/mdb/Connections')
 require('./Configs/passport/local-auth')
 
 //settings
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 8080)
 app.set('views', path.join(__dirname, 'views'))
 app.engine('ejs', engine)
 app.set('view engine', 'ejs')
@@ -46,6 +48,10 @@ app.use((req, res, next) => {
 app.use(require('./Routes/Index.Routes'))
 
 //Startings
-app.listen(app.get('port'), () => {
+https.createServer({
+    key: fs.readFileSync('src/privates/key.pem'),
+    cert: fs.readFileSync('src/privates/cert.pem'),
+    passphrase: 'adiosamor96'
+}, app).listen(app.get('port'), () => {
     console.log(`Server Running on Port ${app.get('port')}`);
 })
