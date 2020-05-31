@@ -15,13 +15,13 @@ r.route('/materias')
     .post(verifyMateria, truncateMaterias, addMaterias)
 
 r.route('/creditos')
-    .post(verifyCreditos, truncateCreditos, addCreditos)
+    .post(verifyCreditos,  truncateCreditos, addCreditos)
 
 r.route('/controles')
-    .post(/* verifyControl *//* , truncateControl */ addControl)
+    .post(verifyControl , truncateControl , addControl)
 
 r.route('/evaluaciones')
-    .post(verifyEvaluacion, truncateEvaluacion, addEvaluacion)
+    .post( verifyEvaluacion  , truncateEvaluacion, addEvaluacion)
 
 r.get('/', (req, res, next) => {
 
