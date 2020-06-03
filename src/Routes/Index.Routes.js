@@ -26,6 +26,17 @@ r.route('/evaluaciones')
 r.route('/ingreso')
     .post(/* verifyControl */truncateIngreso, addIngreso)
 
+    .post(/*verifyMateria, */ truncateMaterias, addMaterias)
+
+r.route('/creditos')
+    .post(/*verifyCreditos, */ truncateCreditos, addCreditos)
+
+r.route('/controles')
+    .post(/* verifyControl , */ truncateControl , addControl)
+
+r.route('/evaluaciones')
+    .post(/* verifyEvaluacion  ,*/ truncateEvaluacion, addEvaluacion)
+
 r.get('/', (req, res, next) => {
 
     if (req.isAuthenticated()) {
