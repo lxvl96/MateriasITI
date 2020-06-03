@@ -24,7 +24,7 @@ const getMaterias = async (req, res, next) => {
             INNER JOIN periodo_iniciales as pi ON pi.ncontrol = c.ncontrol 
             INNER JOIN creditos ON materia.clave = creditos.clave_materia 
             INNER JOIN periodos ON c.tipo = periodos.tipo
-            INNER JOIN semestre as s ON s.comparador = CAST( c.periodo_acreditado AS INTEGER) - CAST(pi.periodo_ingreso AS INTEGER)
+            INNER JOIN semestre as s ON s.comparador = CAST( c.periodo_cursado AS INTEGER) - CAST(pi.periodo_ingreso AS INTEGER)
             INNER JOIN evaluacion on c.oportunidad = evaluacion.clave and c.ncontrol ='${ncontrol}' order by c.id`)
 
             //getPromedioGeneral
