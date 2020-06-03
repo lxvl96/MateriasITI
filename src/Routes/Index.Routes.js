@@ -2,8 +2,8 @@ const { Router } = require('express')
 const passport = require('passport')
 
 const { verifyMateria, verifyCreditos, verifyControl, verifyEvaluacion } = require('../Middlewares/VerifyFiles')
-const { truncateMaterias, truncateCreditos, truncateControl, truncateEvaluacion } = require('../Controllers/Truncates.controllers')
-const { addMaterias, addCreditos, addControl, addEvaluacion } = require('../Controllers/Adds.Controllers')
+const { truncateMaterias, truncateCreditos, truncateControl, truncateEvaluacion, truncateIngreso } = require('../Controllers/Truncates.controllers')
+const { addMaterias, addCreditos, addControl, addEvaluacion, addIngreso } = require('../Controllers/Adds.Controllers')
 const { getMaterias } = require('../Controllers/Gets.Controllers')
 const { genKeys, verifyKey } = require('../Middlewares/APIKeys')
 const r = Router()
@@ -12,16 +12,19 @@ r.route('/materias/:ncontrol/:apikey')
     .get(getMaterias)
 
 r.route('/materias')
-    .post(verifyMateria, truncateMaterias, addMaterias)
+    .post(/* verifyMateria */ truncateMaterias, addMaterias)
 
 r.route('/creditos')
-    .post(verifyCreditos, truncateCreditos, addCreditos)
+    .post(/* verifyCreditos */ truncateCreditos, addCreditos)
 
 r.route('/controles')
-    .post(/* verifyControl *//* , truncateControl */ addControl)
+    .post(/* verifyControl */truncateControl, addControl)
 
 r.route('/evaluaciones')
-    .post(verifyEvaluacion, truncateEvaluacion, addEvaluacion)
+    .post(/* verifyEvaluacion */ truncateEvaluacion, addEvaluacion)
+
+r.route('/ingreso')
+    .post(/* verifyControl */truncateIngreso, addIngreso)
 
 r.get('/', (req, res, next) => {
 

@@ -146,9 +146,45 @@ const addControl = (req, res, next) => {
     // res.json({ msg: 'Successfully Registered Control!' })
 }
 
+
+const addIngreso = (req, res, next) => {
+    let csvIngres = req.files.csvIngreso;
+    let ingrPath = `${__dirname}/../Public/` + csvIngres.name;
+    csvIngres.mv(ingrPath)
+    let stream = fs.createReadStream(ingrPath);
+    let csvData = [];
+    let csvStream = csv.parse()
+        .on("data", function (record) {
+            csvStream.pause();
+            for (var key in record) {
+                record[key] = record[key].replace(/['"]+/g, '').trim()
+            }
+            let ncontrol = record[0];
+            let periodoIngreso = record[1];
+            pool.query("INSERT INTO periodo_iniciales (ncontrol ,periodo_ingreso) \
+            VALUES($1,$2)", [ncontrol, periodoIngreso], function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            csvStream.resume();
+        }).on("end", function () {
+            console.log("Successfully Registered Control!");
+            fs.unlinkSync(ingrPath)
+        }).on("error", function (err) {
+            console.log(err);
+        });
+    stream.pipe(csvStream)
+    // next()
+    req.flash('createSuccess', 'Subido Satisfactoriamente');
+    res.redirect('/dashboard')
+    // res.json({ msg: 'Successfully Registered Control!' })
+}
+
 module.exports = {
     addMaterias,
     addEvaluacion,
     addCreditos,
-    addControl
+    addControl,
+    addIngreso
 }

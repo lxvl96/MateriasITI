@@ -21,9 +21,15 @@ const truncateEvaluacion = (req, res, next) => {
     next()
 }
 
+const truncateIngreso = (req, res, next) => {
+    pool.query("TRUNCATE TABLE periodo_iniciales RESTART IDENTITY")
+    next()
+}
+
 module.exports = {
     truncateMaterias,
     truncateCreditos,
     truncateEvaluacion,
-    truncateControl
+    truncateControl,
+    truncateIngreso
 }

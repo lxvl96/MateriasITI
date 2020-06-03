@@ -1,15 +1,6 @@
 const mongoose = require('mongoose')
 const keys = require('../Models/Keys')
 
-
-
-
-
-
-
-
-
-
 const verifyKey = async (req, res, next) => {
 
     var keyInput = req.params.key;

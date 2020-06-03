@@ -12,13 +12,19 @@ const getMaterias = async (req, res, next) => {
             //getMaterias
             let ncontrol = req.params.ncontrol;
             const queryMaterias = await pool.query(`select materia.nombre as materia, c.clave_materia,
-            creditos.credito , CONCAT(periodos.periodo_corto,'/',c.año) as periodo,
-            c.calificacion, 
-            evaluacion.nombre_corto as oportunidad 
-            FROM (SELECT left(periodo_cursado,4) as año,unnest(string_to_array(right(periodo_cursado, length(periodo_cursado)-4) ,NULL)) as tipo ,id ,periodo_cursado, periodo_acreditado,clave_materia , ncontrol ,oportunidad, calificacion FROM control order by periodo_cursado , clave_materia) as c
-            INNER JOIN Materia ON materia.clave = c.clave_materia 
+            creditos.credito ,
+            CONCAT(periodos.periodo_corto,'/',c.año) as periodo,
+            c.calificacion,s.semestre, 
+            evaluacion.nombre_corto as oportunidad
+            FROM (SELECT left(periodo_cursado,4) as año,unnest(string_to_array(right(periodo_cursado, length(periodo_cursado)-4) ,
+            NULL)) as tipo,
+            id ,periodo_cursado, periodo_acreditado,clave_materia , ncontrol ,oportunidad, calificacion , periodo_ingreso FROM control 
+            order by periodo_cursado , clave_materia) as c
+            INNER JOIN Materia ON materia.clave = c.clave_materia
+            INNER JOIN periodo_iniciales as pi ON pi.ncontrol = c.ncontrol 
             INNER JOIN creditos ON materia.clave = creditos.clave_materia 
             INNER JOIN periodos ON c.tipo = periodos.tipo
+            INNER JOIN semestre as s ON s.comparador = CAST( c.periodo_acreditado AS INTEGER) - CAST(pi.periodo_ingreso AS INTEGER)
             INNER JOIN evaluacion on c.oportunidad = evaluacion.clave and c.ncontrol ='${ncontrol}' order by c.id`)
 
             //getPromedioGeneral

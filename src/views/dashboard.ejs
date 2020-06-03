@@ -5,23 +5,24 @@
     <strong>Bienvenido! <%= user.username %> . </strong>
 </div> -->
 
+<%if (createSuccess.length > 0) {%>
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong><%= createSuccess %> !. </strong>
+</div>
+<% } %>
+<%if (noSuccess.length > 0) {%>
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong><%= noSuccess %> !. </strong>
+</div>
+<% } %>
 <div class="container">
-    <%if (createSuccess.length > 0) {%>
-    <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong><%= createSuccess %> !. </strong>
-    </div>
-    <% } %>
-    <%if (noSuccess.length > 0) {%>
-    <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong><%= noSuccess %> !. </strong>
-    </div>
-    <% } %>
-    <div class="rows">
+
+    <div class="rows"> <!--aqui empieza rows-->
         <div class=" row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center align-self-center">
 
-            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+            <div class="card col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" style="max-width:319px;">
                 <form action="/controles" method="POST" enctype="multipart/form-data">
                     <div class="card-header bg-dark">
                         <center>CONTROL</center>
@@ -33,7 +34,7 @@
                             </div>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="csvControl" name="csvControl">
-                                <label class="custom-file-label" for="csvControl">Seleccionar CSV</label>
+                                <label class="custom-file-label" for="csvControl">Seleccionar</label>
                             </div>
                         </div>
                     </div>
@@ -43,7 +44,7 @@
                 </form>
             </div>
 
-            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+            <div class="card col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" style="max-width:319px;">
                 <form action="/materias" method="POST" enctype="multipart/form-data">
                     <div class="card-header bg-dark">
                         <center>MATERIAS</center>
@@ -55,7 +56,7 @@
                             </div>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="csvMaterias" name="csvMaterias">
-                                <label class="custom-file-label" for="csvMaterias">Seleccionar CSV</label>
+                                <label class="custom-file-label" for="csvMaterias">Seleccionar</label>
                             </div>
                         </div>
                     </div>
@@ -65,7 +66,7 @@
                 </form>
             </div>
 
-            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
+            <div class="card col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" style="max-width:319px;">
                 <form action="/evaluaciones" method="POST" enctype="multipart/form-data">
                     <div class="card-header bg-dark">
                         <center>EVALUACIONES (TIPOS)</center>
@@ -77,7 +78,7 @@
                             </div>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="csvEvaluacion" name="csvEvaluacion">
-                                <label class="custom-file-label" for="csvEvaluacion">Seleccionar CSV</label>
+                                <label class="custom-file-label" for="csvEvaluacion">Seleccionar</label>
                             </div>
                         </div>
                     </div>
@@ -86,32 +87,57 @@
                     </div>
                 </form>
             </div>
+            <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-center align-self-center">
+                <div class="card col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" style="max-width:319px;">
+                    <form action="/creditos" method="POST" enctype="multipart/form-data">
+                        <div class="card-header bg-dark">
+                            <center>CREDITOS (MATERIAS)</center>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="csvCreditos" name="csvCreditos">
+                                    <label class="custom-file-label" for="csvCreditos">Seleccionar</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-dark">
+                            <button class="btn btn-block btn-primary">Subir</button>
+                        </div>
+                    </form>
+                </div>
 
-            <div class="card col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="max-width:319px;">
-                <form action="/creditos" method="POST" enctype="multipart/form-data">
-                    <div class="card-header bg-dark">
-                        <center>CREDITOS (MATERIAS)</center>
-                    </div>
-                    <div class="card-body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="csvCreditos" name="csvCreditos">
-                                <label class="custom-file-label" for="csvCreditos">Seleccionar CSV</label>
+                <div class="card col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" style="max-width:319px;">
+                    <form action="/ingreso" method="POST" enctype="multipart/form-data">
+                        <div class="card-header bg-dark">
+                            <center>INGRESO (PERIODOS)</center>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-file"></i></span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="csvIngreso" name="csvIngreso">
+                                    <label class="custom-file-label" for="csvIngreso">Seleccionar</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer bg-dark">
-                        <button class="btn btn-block btn-primary">Subir</button>
-                    </div>
-                </form>
+                        <div class="card-footer bg-dark">
+                            <button class="btn btn-block btn-primary">Subir</button>
+                        </div>
+                    </form>
+                </div>
             </div>
+            
 
 
         </div>
     </div>
+    <!--aqui termina rows-->
 
 </div>
 <!-- 
