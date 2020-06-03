@@ -18,7 +18,7 @@ const getMaterias = async (req, res, next) => {
             evaluacion.nombre_corto as oportunidad
             FROM (SELECT left(periodo_cursado,4) as año,unnest(string_to_array(right(periodo_cursado, length(periodo_cursado)-4) ,
             NULL)) as tipo,
-            id ,periodo_cursado, periodo_acreditado,clave_materia , ncontrol ,oportunidad, calificacion , periodo_ingreso FROM control 
+            id ,periodo_cursado, periodo_acreditado,clave_materia , ncontrol ,oportunidad, calificacion FROM control 
             order by periodo_cursado , clave_materia) as c
             INNER JOIN Materia ON materia.clave = c.clave_materia
             INNER JOIN periodo_iniciales as pi ON pi.ncontrol = c.ncontrol 
