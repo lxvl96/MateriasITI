@@ -40,7 +40,7 @@ const getMaterias = async (req, res, next) => {
             let queryPorcentajeAvance = await pool.query(`select sum(creditos.credito) * 100 / 260 as porcentaje FROM (select * from control where calificacion != 'NA') as c 
         INNER JOIN Materia ON materia.clave = c.clave_materia 
         INNER JOIN creditos ON materia.clave = creditos.clave_materia where c.ncontrol= '${ncontrol}'`)
-
+//quedo
             //get Response to clients
             res.json({
                 nControl: ncontrol,
