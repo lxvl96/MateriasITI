@@ -106,5 +106,5 @@ const getData = async url => {
 //exports
 module.exports = {
     getMaterias
-    , getSemestreActual
+   /*   , getSemestreActual */
 }
