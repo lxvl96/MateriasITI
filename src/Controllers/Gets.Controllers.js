@@ -92,10 +92,6 @@ const getSemestreActual = async (req, res, next) => {
     let materiasInfo = materiasInf.filter(materiasInf => materiasInf.semestre == sem);
 
     res.json({ nControl, porcentajeAvance, promedioGeneral, creditosAcumulados, materiasInfo })
-    // } else {
-    //     res.json({ msg: 'Error , No Tienes Accesso a La API' })
-    // }
-
     // res.json({keyInput})
 };
 
