@@ -13,7 +13,7 @@ r.route('/materias/:ncontrol/:apikey')
     .get(getMaterias)
 
 r.route('/materias/:ncontrol/:semestre/:apikey')
-    .get(getSearchmestre)
+    .get(getSearchmestre);
 
 r.route('/materias')
     .post(/* verifyMateria */ truncateMaterias, addMaterias)
