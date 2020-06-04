@@ -48,10 +48,13 @@ app.use((req, res, next) => {
 app.use(require('./Routes/Index.Routes'))
 
 //Startings
-https.createServer({
+var ser = https.createServer({
     key: fs.readFileSync('src/privates/key.pem'),
     cert: fs.readFileSync('src/privates/cert.pem'),
     passphrase: 'adiosamor96'
 }, app).listen(app.get('port'), () => {
     console.log(`Server Running on Port ${app.get('port')}`);
+
 })
+
+ser.timeout = 120000;

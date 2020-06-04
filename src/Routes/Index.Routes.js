@@ -4,7 +4,7 @@ const passport = require('passport')
 const { verifyMateria, verifyCreditos, verifyControl, verifyEvaluacion } = require('../Middlewares/VerifyFiles')
 const { truncateMaterias, truncateCreditos, truncateControl, truncateEvaluacion, truncateIngreso } = require('../Controllers/Truncates.controllers')
 const { addMaterias, addCreditos, addControl, addEvaluacion, addIngreso } = require('../Controllers/Adds.Controllers')
-const { getMaterias ,getSemestreActual } = require('../Controllers/Gets.Controllers')
+const { getMaterias ,getSemestreActual ,getSemestre} = require('../Controllers/Gets.Controllers')
 const { genKeys, verifyKey } = require('../Middlewares/APIKeys')
 const r = Router()
 
@@ -13,7 +13,7 @@ r.route('/materias/:ncontrol/:apikey')
     .get(getMaterias)
 
 r.route('/materias/:ncontrol/:semestre/:apikey')
-    .get(getSemestreActual)
+    .get(getSemestre)
 
 r.route('/materias')
     .post(/* verifyMateria */ truncateMaterias, addMaterias)
