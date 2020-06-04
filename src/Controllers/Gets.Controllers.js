@@ -88,8 +88,8 @@ const getSemestreActual = async (req, res, next) => {
 
     // const keyBD = await keys.findById(keyInput)
     // if (keyInput = keyBD) {
-    // const url = `https://mat.istmo.tecnm.mx/materias/${nc}/${keyInput}`;
-    const url = `https://127.0.0.1/materias/${nc}/${keyInput}`;
+    const url = `https://mat.istmo.tecnm.mx/materias/${nc}/${keyInput}`;
+    // const url = `https://127.0.0.1/materias/${nc}/${keyInput}`;
     console.log(url);
 
     let mats = await getData(url);
