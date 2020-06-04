@@ -104,7 +104,7 @@ const getSemestreActual = async (req, res, next) => {
     // res.json({keyInput})
 };
 
-const getSemestre = async (req, res, next) => {
+const getSearchmestre = async (req, res, next) => {
 
     try {
         //5ed1d6c15532d18f00e3ad99
@@ -171,5 +171,5 @@ const getSemestre = async (req, res, next) => {
 
 //exports
 module.exports = {
-    getMaterias, getSemestreActual,getSemestre
+    getMaterias, getSemestreActual,getSearchmestre
 }
