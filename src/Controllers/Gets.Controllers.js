@@ -1,5 +1,6 @@
 const { pool } = require('../Configs/Psql/Connections')
 const keys = require('../Models/Keys')
+const fetch = require('node-fetch')
 //Methods Query Get Materias de PSQL
 const getMaterias = async (req, res, next) => {
     try {
@@ -58,7 +59,50 @@ const getMaterias = async (req, res, next) => {
         res.json({ msg: 'Database Connection Eroor or Server Connections Error }' })
     }
 }
+
+//getSemestreActual
+const getData = async url => {
+    try {
+        const response = await fetch(url);
+        const json = await response.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+const getSemestreActual = async (req, res, next) => {
+    let sem = req.params.semestre;
+    let nc = req.params.ncontrol
+    let keyInput = req.params.apikey;
+    console.log(nc);
+
+    // const keyBD = await keys.findById(keyInput)
+    // if (keyInput = keyBD) {
+    const url = `https://mat.istmo.tecnm.mx/materias/${nc}/${keyInput}`;
+    console.log(url);
+
+    let mats = await getData(url);
+    let nControl = mats.nControl;
+    let porcentajeAvance = mats.porcentajeAvance;
+    let promedioGeneral = mats.promedioGeneral;
+    let creditosAcumulados = mats.creditosAcumulados;
+    let materiasInf = mats.materiasInfo;
+    let materiasInfo = materiasInf.filter(materiasInf => materiasInf.semestre == sem);
+
+    res.json({ nControl, porcentajeAvance, promedioGeneral, creditosAcumulados, materiasInfo })
+    // } else {
+    //     res.json({ msg: 'Error , No Tienes Accesso a La API' })
+    // }
+
+    // res.json({keyInput})
+};
+
+
+
+
 //exports
 module.exports = {
-    getMaterias
+    getMaterias , getSemestreActual
 }
