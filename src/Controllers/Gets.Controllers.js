@@ -70,6 +70,13 @@ const getData = async url => {
         console.log(error);
     }
 };
+const fetchTimeout = async (url, options, timeout = 3000) => {
+    return new Promise((resolve, reject) => {
+        fetch(url, options)
+            .then(resolve, reject)
+        setTimeout(reject, timeout);
+    })
+}
 
 const getSemestreActual = async (req, res, next) => {
     let sem = req.params.semestre;
@@ -79,18 +86,18 @@ const getSemestreActual = async (req, res, next) => {
 
     // const keyBD = await keys.findById(keyInput)
     // if (keyInput = keyBD) {
-        const url = `https://mat.istmo.tecnm.mx/materias/${nc}/${keyInput}`;
-        console.log(url);
-        
-        let mats = await getData(url);
-        let nControl = mats.nControl;
-        let porcentajeAvance = mats.porcentajeAvance;
-        let promedioGeneral = mats.promedioGeneral;
-        let creditosAcumulados = mats.creditosAcumulados;
-        let materiasInf = mats.materiasInfo;
-        let materiasInfo = materiasInf.filter(materiasInf => materiasInf.semestre == sem);
+    const url = `https://mat.istmo.tecnm.mx:8080/materias/${nc}/${keyInput}`;
+    console.log(url);
 
-        res.json({ nControl, porcentajeAvance, promedioGeneral, creditosAcumulados, materiasInfo })
+    let mats = await getData(url);
+    let nControl = mats.nControl;
+    let porcentajeAvance = mats.porcentajeAvance;
+    let promedioGeneral = mats.promedioGeneral;
+    let creditosAcumulados = mats.creditosAcumulados;
+    let materiasInf = mats.materiasInfo;
+    let materiasInfo = materiasInf.filter(materiasInf => materiasInf.semestre == sem);
+
+    res.json({ nControl, porcentajeAvance, promedioGeneral, creditosAcumulados, materiasInfo })
     // } else {
     //     res.json({ msg: 'Error , No Tienes Accesso a La API' })
     // }
@@ -104,5 +111,5 @@ const getSemestreActual = async (req, res, next) => {
 //exports
 module.exports = {
     getMaterias
-    ,getSemestreActual
+    , getSemestreActual
 }
