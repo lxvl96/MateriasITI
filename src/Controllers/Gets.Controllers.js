@@ -71,25 +71,9 @@ const getData = async url => {
         console.log(error);
     }
 };
-/* 
-const axiosFecth = async url => {
-    await axios.get(url)
-        .then(async function (response) {
-            // handle success
-            console.log(response);
-            const json = await response.json();
-            return json;
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-        .finally(function () {
-            // always executed
-        });
-} */
 
-const getSemestreActual = async (req, res, next) => {
+
+/* const getSemestreActual = async (req, res, next) => {
     let sem = req.params.semestre;
     let nc = req.params.ncontrol
     let keyInput = req.params.apikey;
@@ -99,7 +83,7 @@ const getSemestreActual = async (req, res, next) => {
     // if (keyInput = keyBD) {
     const url = `https://mat.istmo.tecnm.mx/materias/${nc}/${keyInput}`;
     console.log(url);
-//lmdls
+
     let mats = await getData(url);
     let nControl = mats.nControl;
     let porcentajeAvance = mats.porcentajeAvance;
@@ -114,7 +98,7 @@ const getSemestreActual = async (req, res, next) => {
     // }
 
     // res.json({keyInput})
-};
+}; */
 
 
 
