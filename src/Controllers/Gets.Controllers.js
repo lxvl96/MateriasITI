@@ -63,7 +63,7 @@ const getMaterias = async (req, res, next) => {
 //getSemestreActual
 const getData = async url => {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, { timeout: 0 });
         const json = await response.json();
         return json;
     } catch (error) {
@@ -86,7 +86,7 @@ const getSemestreActual = async (req, res, next) => {
 
     // const keyBD = await keys.findById(keyInput)
     // if (keyInput = keyBD) {
-    const url = `https://mat.istmo.tecnm.mx:8080/materias/${nc}/${keyInput}`;
+    const url = `https://mat.istmo.tecnm.mx/materias/${nc}/${keyInput}`;
     console.log(url);
 
     let mats = await getData(url);
