@@ -1,5 +1,6 @@
 const { pool } = require('../Configs/Psql/Connections')
 const fetch = require('node-fetch')
+const axios = require('axios');
 const keys = require('../Models/Keys')
 //Methods Query Get Materias de PSQL
 const getMaterias = async (req, res, next) => {
@@ -70,12 +71,28 @@ const getData = async url => {
         console.log(error);
     }
 };
-const fetchTimeout = async (url, options, timeout = 3000) => {
-    return new Promise((resolve, reject) => {
-        fetch(url, options)
-            .then(resolve, reject)
-        setTimeout(reject, timeout);
-    })
+/* 
+const axiosFecth = async url => {
+    await axios.get(url)
+        .then(async function (response) {
+            // handle success
+            console.log(response);
+            const json = await response.json();
+            return json;
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .finally(function () {
+            // always executed
+        });
+} */
+const axiosFecth = async url => {
+    const f = axios.get(url);
+    console.log(f);
+    
+    return f;
 }
 
 const getSemestreActual = async (req, res, next) => {
