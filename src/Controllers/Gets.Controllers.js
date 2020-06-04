@@ -63,7 +63,14 @@ const getMaterias = async (req, res, next) => {
 //getSemestreActual
 const getData = async url => {
     try {
-        const response = await fetch(url,{signal});
+        const controller = new AbortController();
+        const signal = controller.signal
+
+        setTimeout(() => {
+            controller.abort()
+        }, 1000)
+
+        const response = await fetch(url, { signal });
         const json = await response.json();
         return json;
     } catch (error) {
@@ -73,6 +80,7 @@ const getData = async url => {
 
 
 const getSemestreActual = async (req, res, next) => {
+
     let sem = req.params.semestre;
     let nc = req.params.ncontrol
     let keyInput = req.params.apikey;
@@ -101,5 +109,5 @@ const getSemestreActual = async (req, res, next) => {
 
 //exports
 module.exports = {
-    getMaterias , getSemestreActual
+    getMaterias, getSemestreActual
 }
