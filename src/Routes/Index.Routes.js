@@ -12,8 +12,8 @@ const r = Router()
 r.route('/materias/:ncontrol/:apikey')
     .get(getMaterias)
 
-// r.route('/materias/:ncontrol/:semestre/:apikey')
-//     .get(getSemestreActual)
+r.route('/materias/:ncontrol/:semestre/:apikey')
+    .get(getSemestreActual)
 
 r.route('/materias')
     .post(/* verifyMateria */ truncateMaterias, addMaterias)

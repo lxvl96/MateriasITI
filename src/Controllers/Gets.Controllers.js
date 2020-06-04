@@ -70,7 +70,7 @@ const getData = async url => {
         console.log(error);
     }
 };
-/* 
+
 const getSemestreActual = async (req, res, next) => {
     let sem = req.params.semestre;
     let nc = req.params.ncontrol
@@ -96,7 +96,7 @@ const getSemestreActual = async (req, res, next) => {
     // }
 
     // res.json({keyInput})
-}; */
+};
 
 
 
@@ -104,5 +104,5 @@ const getSemestreActual = async (req, res, next) => {
 //exports
 module.exports = {
     getMaterias
-    // getSemestreActual
+    ,getSemestreActual
 }
