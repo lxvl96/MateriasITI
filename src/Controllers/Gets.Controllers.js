@@ -43,11 +43,13 @@ const getMaterias = async (req, res, next) => {
         INNER JOIN creditos ON materia.clave = creditos.clave_materia where c.ncontrol= '${ncontrol}'`)
             //quedo
             //get Response to clients
+            let queryMats = queryMaterias.rows
             res.json({
                 nControl: ncontrol,
                 promedioGeneral: queryPromGeneral.rows[0].promgen,
                 creditosAcumulados: queryCreditos.rows[0].sum,
                 porcentajeAvance: queryPorcentajeAvance.rows[0].porcentaje,
+                semestreActual: queryMats[queryMats.length - 1].semestre,
                 materiasInfo: queryMaterias.rows
             })
 
@@ -154,6 +156,7 @@ const getSearchmestre = async (req, res, next) => {
                 promedioGeneral: queryPromGeneral.rows[0].promgen,
                 creditosAcumulados: queryCreditos.rows[0].sum,
                 porcentajeAvance: queryPorcentajeAvance.rows[0].porcentaje,
+                semestreActual: queryMats[queryMats.length - 1].semestre,
                 materiasInfo: matsData
             })
 
