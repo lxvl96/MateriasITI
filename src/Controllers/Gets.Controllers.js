@@ -64,7 +64,7 @@ const getMaterias = async (req, res, next) => {
 //getSemestreActual
 const getData = async url => {
     try {
-        const response = await fetch(url, { timeout: 0 });
+        const response = await fetch(url, );
         const json = await response.json();
         return json;
     } catch (error) {
@@ -88,12 +88,6 @@ const axiosFecth = async url => {
             // always executed
         });
 } */
-const axiosFecth = async url => {
-    const f = axios.get(url);
-    console.log(f);
-    
-    return f;
-}
 
 const getSemestreActual = async (req, res, next) => {
     let sem = req.params.semestre;
@@ -105,7 +99,7 @@ const getSemestreActual = async (req, res, next) => {
     // if (keyInput = keyBD) {
     const url = `https://mat.istmo.tecnm.mx/materias/${nc}/${keyInput}`;
     console.log(url);
-
+//lmdls
     let mats = await getData(url);
     let nControl = mats.nControl;
     let porcentajeAvance = mats.porcentajeAvance;
