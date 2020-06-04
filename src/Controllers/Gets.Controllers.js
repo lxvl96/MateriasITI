@@ -64,7 +64,7 @@ const getMaterias = async (req, res, next) => {
 //getSemestreActual
 const getData = async url => {
     try {
-        const response = await fetch(url, );
+        const response = await fetch(url);
         const json = await response.json();
         return json;
     } catch (error) {
