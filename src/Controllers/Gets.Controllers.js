@@ -50,6 +50,7 @@ const getMaterias = async (req, res, next) => {
                 creditosAcumulados: queryCreditos.rows[0].sum,
                 porcentajeAvance: queryPorcentajeAvance.rows[0].porcentaje,
                 semestreActual: queryMats[queryMats.length - 1].semestre,
+                periodoActual: queryMats[queryMats.length - 1].periodo,
                 materiasInfo: queryMaterias.rows
             })
 
